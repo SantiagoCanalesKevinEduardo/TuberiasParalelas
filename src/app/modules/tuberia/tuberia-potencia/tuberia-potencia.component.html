@@ -1,0 +1,120 @@
+<app-form-potencia></app-form-potencia>
+<div class="resolver">
+  <button
+    class="btn btn-warning"
+    type="submit"
+    id="resolver"
+    (click)="resolver()"
+  >
+    Resolver Ejercicio
+  </button>
+</div>
+
+<div class="resolver">
+  <h3 class="resultado">Resultados:</h3>
+</div>
+<div class="resultado-viscocidad">
+  <h4 class="viscosidad">Viscocidad: {{ viscocidad }} m<sup>2</sup>/s</h4>
+</div>
+<div class="resultado-viscocidad">
+  <h4 class="viscosidad">H1: {{ H1 }} m</h4>
+</div>
+<div class="resultado-viscocidad">
+  <h4 class="viscosidad">Q1: {{ Q1 }} m<sup>3</sup>/s</h4>
+</div>
+<div class="resultado-viscocidad">
+  <h4 class="viscosidad">V1: {{ velocidad }} m/s</h4>
+</div>
+<div class="resultado-viscocidad">
+  <h4 class="viscosidad">Re: {{ Re }}</h4>
+</div>
+<div class="resultado-viscocidad">
+  <h4 class="viscosidad">f: {{ f }}</h4>
+</div>
+<div class="resultado-viscocidad">
+  <h4 class="viscosidad">hf1: {{ hf1 }} m</h4>
+</div>
+<div class="resultado-viscocidad">
+  <h4 class="viscosidad">hm1: {{ hm1 }} m</h4>
+</div>
+<div class="resultado-viscocidad">
+  <h4 class="viscosidad">HR: {{ HR }} m</h4>
+</div>
+
+<div class="tables">
+  <table class="table" *ngFor="let tabla of Pi; let x = index">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">H(m)</th>
+        <th scope="col">Ks/D</th>
+        <th scope="col">hf(m)</th>
+        <th scope="col">V(m/s)</th>
+        <th scope="col">hf+1</th>
+        <th scope="col">hm</th>
+        <th scope="col">A(m<sup>2</sup>)</th>
+        <th scope="col">Q(m<sup>3</sup>/s)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let velocidad of datosIteracion[x].Velocidad; let i = index">
+        <th>
+          {{ i }}
+        </th>
+        <td>
+          {{ HR }}
+        </td>
+        <td>
+          {{ Kss[x + 1] / Ds[x + 1] }}
+        </td>
+        <td>
+          {{ datosIteracion[x].Hf[i] }}
+        </td>
+        <td>
+          {{ velocidad }}
+        </td>
+        <td>
+          {{ datosIteracion[x].Hfs[i] }}
+        </td>
+        <td>
+          {{ datosIteracion[x].Hm[i] }}
+        </td>
+        <td>
+          {{ datosIteracion[x].A[i] }}
+        </td>
+
+        <td>
+          {{ datosIteracion[x].Q[i] }}
+        </td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+        <th scope="col">
+          Q<sub>{{ x + 1 }}</sub
+          >:{{ Qs[x + 1] }}
+        </th>
+      </tr>
+    </thead>
+    <thead>
+      <tr>
+        <th scope="col">
+          H<sub>{{ x + 1 }}</sub
+          >:{{ Hi[x + 1] }} m
+        </th>
+      </tr>
+    </thead>
+
+    <thead>
+      <tr>
+        <th scope="col">
+          P<sub>{{ x + 1 }}</sub
+          >:{{ Pi[x] }}
+        </th>
+      </tr>
+    </thead>
+  </table>
+  <div class="resolver">
+    <h3 class="resultado">Q<sub>t</sub>: {{ Qt }}</h3>
+  </div>
+</div>

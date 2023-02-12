@@ -1,0 +1,33 @@
+.resolver {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#resolver {
+  margin-top: 1rem;
+  color: white;
+  margin-bottom: 5rem;
+}
+.tables {
+  margin-left: 5rem;
+  margin-right: 5rem;
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.resultado {
+  font-size: 25px;
+}
+.viscosidad {
+  font-size: 20px;
+}
+
+.resultado-viscocidad {
+  margin-left: 5rem;
+}
+.tables {
+  margin-bottom: 20.28rem;
+}

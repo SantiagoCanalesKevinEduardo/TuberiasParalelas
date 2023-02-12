@@ -1,0 +1,182 @@
+<div>
+  <form id="form-disenio" [formGroup]="formTbDisenio" (ngSubmit)="onSubmit()">
+    <small class="text-muted">Datos Generales: </small>
+    <div class="form-groups">
+      <!--PRIMER DATO-->
+
+      <div class="form-group">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <button class="btn btn-secondary" type="button" id="form-group-p">
+              ρ
+            </button>
+          </div>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="kg/m3"
+            aria-label=""
+            aria-describedby="basic-addon1"
+            formControlName="p"
+          />
+        </div>
+      </div>
+
+      <!--TERCER DATO-->
+
+      <div class="form-group">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <button class="btn btn-secondary" type="button" id="form-group-u">
+              µ<sub></sub>
+            </button>
+          </div>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="m2/s"
+            aria-label=""
+            aria-describedby="basic-addon1"
+            formControlName="u"
+          />
+        </div>
+      </div>
+
+      <!--CUARTO DATO-->
+
+      <div class="form-group">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <button class="btn btn-secondary" type="button" id="form-group-h">
+              H<sub>T</sub>
+            </button>
+          </div>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="m"
+            aria-label=""
+            aria-describedby="basic-addon1"
+            formControlName="h"
+          />
+        </div>
+      </div>
+    </div>
+    <div formArrayName="contenidos">
+      <div *ngFor="let contenido of contenidos.controls; let i = index">
+        <div [formGroupName]="i">
+          <small class="text-muted">Datos bifurcación {{ i }}: </small>
+          <div class="form-groups">
+            <!--PRIMER DATO-->
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <button
+                    class="btn btn-secondary"
+                    type="button"
+                    id="form-group-n"
+                  >
+                    l<sub>{{ i }}</sub>
+                  </button>
+                </div>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="m"
+                  aria-describedby="basic-addon1"
+                  formControlName="l"
+                />
+              </div>
+            </div>
+
+            <!--SEGUNDO DATO-->
+
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <button
+                    class="btn btn-secondary"
+                    type="button"
+                    id="form-group-p"
+                  >
+                    d<sub>{{ i }}</sub>
+                  </button>
+                </div>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="m"
+                  aria-label=""
+                  aria-describedby="basic-addon1"
+                  formControlName="d"
+                />
+              </div>
+            </div>
+
+            <!--TERCER DATO-->
+
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <button
+                    class="btn btn-secondary"
+                    type="button"
+                    id="form-group-u"
+                  >
+                    Ks<sub>{{ i }}</sub>
+                  </button>
+                </div>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="m"
+                  aria-label=""
+                  aria-describedby="basic-addon1"
+                  formControlName="ks"
+                />
+              </div>
+            </div>
+
+            <!--CUARTO DATO-->
+
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <button
+                    class="btn btn-secondary"
+                    type="button"
+                    id="form-group-h"
+                  >
+                    Σk<sub
+                      ><sub>{{ i }}</sub></sub
+                    >
+                  </button>
+                </div>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  aria-label=""
+                  aria-describedby="basic-addon1"
+                  formControlName="k"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Error-->
+
+        <!--Primer form-->
+      </div>
+    </div>
+    <button class="btn btn-success" (click)="addContenido()">Añadir</button>
+    <button
+      class="btn btn-success"
+      type="submit"
+      id="guardar-datos"
+      (click)="onSubmit()"
+    >
+      Guardar Datos
+    </button>
+  </form>
+</div>

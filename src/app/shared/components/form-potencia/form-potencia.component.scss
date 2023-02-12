@@ -1,0 +1,80 @@
+#form-disenio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.form-group {
+  margin-left: 1rem;
+  margin-top: 20px;
+}
+
+.btn-secondary {
+  width: 3rem;
+  border-radius: 0px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+input {
+  font-family: "SourceSansPro-Regular";
+  font-size: 16px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1.2px rgb(121, 114, 114) solid;
+  padding: 0 0 0 3px;
+}
+
+input:focus {
+  outline: none;
+  border: 1.6px rgb(46, 133, 28) solid;
+}
+
+input:focus,
+select:focus,
+select,
+input.form-control:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+#form-button-resolver:hover {
+  background-color: aliceblue;
+}
+
+#alert {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-groups {
+  display: flex;
+  justify-content: center;
+}
+
+.text-muted {
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+#form-button-resolver {
+  margin-top: 2rem;
+}
+
+#resolver {
+  margin-top: 1rem;
+  color: white;
+  margin-bottom: 5rem;
+}
+
+#guardar-datos {
+  margin-top: 10px;
+}

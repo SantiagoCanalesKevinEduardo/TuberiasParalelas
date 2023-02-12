@@ -1,0 +1,80 @@
+<app-form-disenio></app-form-disenio>
+<div class="resolver">
+  <button
+    class="btn btn-warning"
+    type="submit"
+    id="resolver"
+    (click)="resolver()"
+  >
+    Resolver Ejercicio
+  </button>
+</div>
+
+<div class="resolver">
+  <h3 class="resultado">Resultados:</h3>
+</div>
+
+<div class="resultado-viscocidad">
+  <h4 class="viscosidad">Viscocidad: {{ viscocidad }} m<sup>2</sup>/s</h4>
+</div>
+<div class="tables">
+  <table class="table" *ngFor="let tabla of Ls; let x = index">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">H(m)</th>
+        <th scope="col">Ks/D</th>
+        <th scope="col">hf(m)</th>
+        <th scope="col">V(m/s)</th>
+        <th scope="col">hf+1</th>
+        <th scope="col">hm</th>
+        <th scope="col">A(m<sup>2</sup>)</th>
+        <th scope="col">Q(m<sup>3</sup>/s)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let velocidad of datosIteracion[x].Velocidad; let i = index">
+        <th>
+          {{ i }}
+        </th>
+        <td>
+          {{ H }}
+        </td>
+        <td>
+          {{ Kss[x] / Ds[x] }}
+        </td>
+        <td>
+          {{ datosIteracion[x].Hf[i] }}
+        </td>
+        <td>
+          {{ velocidad }}
+        </td>
+        <td>
+          {{ datosIteracion[x].Hfs[i] }}
+        </td>
+        <td>
+          {{ datosIteracion[x].Hm[i] }}
+        </td>
+        <td>
+          {{ datosIteracion[x].A[i] }}
+        </td>
+
+        <td>
+          {{ datosIteracion[x].Q[i] }}
+        </td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+        <th scope="col">
+          Q<sub>{{ x }}</sub
+          >:{{ Qs[x] }}
+        </th>
+      </tr>
+    </thead>
+  </table>
+
+  <div class="resolver">
+    <h3 class="resultado">Q<sub>t</sub>: {{ Qt }}</h3>
+  </div>
+</div>
