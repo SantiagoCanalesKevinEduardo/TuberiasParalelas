@@ -17,6 +17,7 @@
 <div class="resultado-viscocidad">
   <h4 class="viscosidad">Viscocidad: {{ viscocidad }} m<sup>2</sup>/s</h4>
 </div>
+<!--Mostramos todas las iteraciones de las tablas-->
 <div class="tables">
   <table class="table" *ngFor="let tabla of Ls; let x = index">
     <thead class="thead-dark">
@@ -32,6 +33,7 @@
         <th scope="col">Q(m<sup>3</sup>/s)</th>
       </tr>
     </thead>
+    <!--Mostramos todas las iteraciones de las tablas-->
     <tbody>
       <tr *ngFor="let velocidad of datosIteracion[x].Velocidad; let i = index">
         <th>
@@ -73,7 +75,7 @@
       </tr>
     </thead>
   </table>
-
+  <!--Mostramos el caudal total-->
   <div class="resolver">
     <h3 class="resultado">Q<sub>t</sub>: {{ Qt }}</h3>
   </div>

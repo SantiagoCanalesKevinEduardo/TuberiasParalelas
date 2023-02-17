@@ -23,11 +23,16 @@ export class FormPotenciaComponent {
     private servicioDisenio: DisenioService
   ) {
     this.formTbDisenio = this.formBuilder.group({
+      //Densidad
       p: new FormControl(null, [Validators.required]),
+      //mu
       u: new FormControl(null, [Validators.required]),
+      //Potencia 1
       P: new FormControl(null, [Validators.required]),
+      //Caudal total
       Q: new FormControl(null, [Validators.required]),
       contenidos: this.formBuilder.array([
+        //Formulario de datos
         this.formBuilder.group({
           l: new FormControl(null, [Validators.required]),
           d: new FormControl(null, [Validators.required]),
@@ -44,10 +49,11 @@ export class FormPotenciaComponent {
   //metodo para subir datos del formulario
 
   public onSubmit() {
+    //validamos si el formulario es valido
     if (!this.formTbDisenio.invalid) {
       this.servicioDisenio.formDatosDisenio = this.formTbDisenio;
-
       this.DatosGurdados();
+      //si no es valido entonces devolvemos mensaje de error
     } else if (this.formTbDisenio.invalid) {
       this.Error();
     }
@@ -56,6 +62,7 @@ export class FormPotenciaComponent {
   get contenidos() {
     return this.formTbDisenio.get('contenidos') as FormArray;
   }
+  //Añadiendo bifurcaciones
   addContenido() {
     let contenidos = this.formBuilder.group({
       l: new FormControl(null, [Validators.required]),

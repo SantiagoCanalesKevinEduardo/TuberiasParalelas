@@ -25,14 +25,24 @@ export class FormDisenioComponent implements OnInit {
     private servicioDisenio: DisenioService
   ) {
     this.formTbDisenio = this.formBuilder.group({
+      //densidad
       p: new FormControl(null, [Validators.required]),
+      //mu
       u: new FormControl(null, [Validators.required]),
+      //altura
       h: new FormControl(null, [Validators.required]),
+
+      //aqui iran los distintos datos de las distintas bifurcaciones
       contenidos: this.formBuilder.array([
         this.formBuilder.group({
+          //validaciones, todos los datos tienen que ser ingresados
+          //longitud
           l: new FormControl(null, [Validators.required]),
+          //diametro
           d: new FormControl(null, [Validators.required]),
+          //coefiente de rugosidad
           ks: new FormControl(null, [Validators.required]),
+          //coeficiente global de perdidas menores
           k: new FormControl(null, [Validators.required]),
         }),
       ]),
@@ -45,9 +55,9 @@ export class FormDisenioComponent implements OnInit {
   //metodo para subir datos del formulario
 
   public onSubmit() {
+    //verificamos si el formulario esta validado
     if (!this.formTbDisenio.invalid) {
       this.servicioDisenio.formDatosDisenio = this.formTbDisenio;
-
       this.DatosGurdados();
     } else if (this.formTbDisenio.invalid) {
       this.Error();
@@ -58,12 +68,21 @@ export class FormDisenioComponent implements OnInit {
     return this.formTbDisenio.get('contenidos') as FormArray;
   }
   addContenido() {
+    //añadiendo bifurcaciones
+
     let contenidos = this.formBuilder.group({
+      //validaciones, todos los datos tienen que ser ingresados
+      //longitud
       l: new FormControl(null, [Validators.required]),
+      //diametro
       d: new FormControl(null, [Validators.required]),
+      //coefiente de rugosidad
       ks: new FormControl(null, [Validators.required]),
+      //coeficiente global de perdidas menores
       k: new FormControl(null, [Validators.required]),
     });
+
+    //ingresando nuevos datos de formulario al arryForm
     this.contenidos.push(contenidos);
   }
 
