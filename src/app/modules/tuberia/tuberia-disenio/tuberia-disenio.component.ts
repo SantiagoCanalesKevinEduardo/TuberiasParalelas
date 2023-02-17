@@ -1,4 +1,3 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { IDisenio } from 'src/app/shared/components/form-disenio/disenio.metadata';
@@ -20,7 +19,6 @@ export class TuberiaDisenioComponent implements OnInit {
   H: number;
   viscocidad: number;
   g: number = 9.81;
-  terminado = false;
 
   //datos a calcular
   Qs: Number[] = [];
@@ -33,6 +31,7 @@ export class TuberiaDisenioComponent implements OnInit {
   Ks: number[] = [];
 
   //Arrays
+  terminado = false;
 
   datosArray: FormArray;
   datos: FormGroup;

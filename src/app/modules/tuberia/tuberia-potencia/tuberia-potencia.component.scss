@@ -24,9 +24,17 @@
   font-size: 20px;
 }
 
-.resultado-viscocidad {
+.resultados {
   margin-left: 5rem;
 }
 .tables {
   margin-bottom: 4.28rem;
+}
+
+td,
+th,
+br,
+.resultado,
+.resultado-viscocidad {
+  color: aliceblue !important;
 }

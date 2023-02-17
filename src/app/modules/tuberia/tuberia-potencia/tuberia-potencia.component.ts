@@ -1,7 +1,5 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { IDisenio } from 'src/app/shared/components/form-disenio/disenio.metadata';
 import { IPotencia } from 'src/app/shared/components/form-potencia/potenica.metadata';
 import { DisenioService } from 'src/app/shared/services/disenio.service';
 
@@ -11,6 +9,7 @@ import { DisenioService } from 'src/app/shared/services/disenio.service';
   styleUrls: ['./tuberia-potencia.component.scss'],
 })
 export class TuberiaPotenciaComponent implements OnInit {
+  //el input me permite inicializar una variable en otra clase
   @Input() data: IPotencia = {
     Hf: [],
     Velocidad: [],
@@ -19,6 +18,8 @@ export class TuberiaPotenciaComponent implements OnInit {
     A: [],
     Q: [],
   };
+
+  //Aqui se almacenaran todas las iteraciones de las potencias
   datosIteracion: IPotencia[] = [];
 
   //datos generales para resolver el ejercicio
@@ -30,19 +31,24 @@ export class TuberiaPotenciaComponent implements OnInit {
 
   //datos necesarios
   viscocidad: number;
+  //gravedad
   g: number = 9.81;
+  //altura
   H1: number;
   velocidad: number;
+  //reynolds
   Re: number;
+  //f
   f: number;
   //calculo de las perdidas
+
+  //perdidas
   hf1: number;
   hm1: number;
   HR: number;
+  //aqui almacenaremos todas las potencias y alturas halladas en los ejerciccios
   Hi: number[] = [];
   Pi: number[] = [];
-
-  terminado = false;
 
   //QSSS
   Q1: number;
@@ -59,10 +65,16 @@ export class TuberiaPotenciaComponent implements OnInit {
   Kss: number[] = [];
   Ks: number[] = [];
 
+  //dato que sirve para determinar que el ejercicio ya esta completado
+  terminado = false;
+
   //Arrays
   datosArray: FormArray;
+
+  //aqui se almacenaran todos los datos ingresados en los formularios
   datos: FormGroup;
 
+  //todo se incializa
   constructor(
     private formBuilder: FormBuilder,
     private servicioDisenio: DisenioService
@@ -72,7 +84,7 @@ export class TuberiaPotenciaComponent implements OnInit {
     this.resolver();
   }
 
-  //sacar datos
+  //sacar datos del servicio
   resolver() {
     if (this.servicioDisenio.formDatosDisenio != null) {
       this.guardarDatos();
@@ -80,6 +92,7 @@ export class TuberiaPotenciaComponent implements OnInit {
       this.calcularDatosParte2();
       this.calcularDatosParte3();
     } else {
+      console.log('error!');
     }
   }
 
@@ -100,6 +113,7 @@ export class TuberiaPotenciaComponent implements OnInit {
       'contenidos'
     ) as FormArray;
 
+    //ingresando todos los datos en arrays para hacerlos mas faciles de manejar
     for (let i = 0; i < this.datosArray.controls.length; i++) {
       this.Ls.push(this.datosArray.controls[i].value.l);
       this.Ds.push(this.datosArray.controls[i].value.d);
@@ -107,6 +121,9 @@ export class TuberiaPotenciaComponent implements OnInit {
       this.Ks.push(this.datosArray.controls[i].value.k);
     }
   }
+
+  //dividiremos la resolución en 3 partes
+  //La primera hallara los datos de la bifurcación 1
   calcularDatosParte1() {
     //calculando la viscocidad cinetica
     this.viscocidad = this.u / this.p;
@@ -218,19 +235,16 @@ export class TuberiaPotenciaComponent implements OnInit {
         this.data.Hf.push(this.data.Hfs[x]);
 
         x++;
-        console.log(
-          'diferencia: ' + Math.abs(this.data.Hf[x - 1] - this.data.Hfs[x - 1])
-        );
-      } while (Math.abs(this.data.Hf[x - 1] - this.data.Hfs[x - 1]) > 0.001);
+      } while (Math.abs(this.data.Hf[x - 1] - this.data.Hfs[x - 1]) > 0.00001);
 
       //guardando los datos de todas las tablas en una lista
       console.log(this.data);
       this.datosIteracion.push(this.data as IPotencia);
       //guardando todos los caudales en una lista
-
       this.Qs.push(this.data.Q[this.data.Q.length - 1]);
     }
 
+    //con esto recorremos toda la lista de Caudales y las sumamos
     let suma = 0;
 
     this.terminado = true;
@@ -238,9 +252,12 @@ export class TuberiaPotenciaComponent implements OnInit {
       suma += q as number;
     });
     this.Qt = suma;
+
+    //en this Qt se almacenaran todas las variables
   }
 
   calcularDatosParte3() {
+    //Metodo usado para hallar las potencias de las bifuraciones, sin contar la primera
     console.log(this.Ls.length - 1);
     for (let i = 0; i < this.Ls.length - 1; i++) {
       this.Hi.push(this.Hi[i] - this.HR);
